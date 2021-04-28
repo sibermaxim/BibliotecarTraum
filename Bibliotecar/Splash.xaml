@@ -1,0 +1,16 @@
+﻿<Window x:Class="Bibliotecar.Splash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Splash" Height="202" Width="300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    
+        <Grid Height="150" Width="260">
+        <Label Name="titleWrk"  Content="Действие" Height="28" 
+               HorizontalAlignment="Left" Margin="45,28,0,0" VerticalAlignment="Top" />
+        <ProgressBar Height="10" HorizontalAlignment="Left" Margin="22,74,0,0" 
+                     Name="pb_Extract1" VerticalAlignment="Top" Width="217" />
+        <ProgressBar Height="10" HorizontalAlignment="Left" Margin="22,106,0,0" 
+                     Name="pb_Extract2" VerticalAlignment="Top" Width="217" />
+    </Grid>
+</Window>

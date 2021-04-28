@@ -1,0 +1,32 @@
+﻿<Window x:Class="Bibliotecar.FileSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Файл данных" 
+        Height="125" 
+        Width="510"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow" 
+        ResizeMode="NoResize">
+    
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <TextBox Text="888" Name="strNameFileData" MinWidth="430" FontSize="26" Margin="5,5,5,5" />
+                <Button Content="..." Name="btFileName"  MinWidth="35" Margin="5,5,5,5" Click="SetFilename" />
+            </StackPanel>
+            <Grid Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Применить" FontSize="16" 
+                    HorizontalAlignment="Stretch" Name="btOk"   Margin="60,5,60,5" 
+                        Click="BtOkClick" IsDefault="True" />
+                <Button Grid.Column="1" Content="Отмена" FontSize="16"  
+                        HorizontalAlignment="Stretch" Name="btCancel" MinWidth="35"  Margin="60,5,60,5" IsCancel="True" />
+            </Grid>
+    </Grid>
+</Window>

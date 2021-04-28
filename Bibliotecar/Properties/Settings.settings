@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Bibliotecar.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="strFiledataName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="NameAuthor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">author</Value>
+    </Setting>
+    <Setting Name="NameAuthorlink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">authorlink</Value>
+    </Setting>
+    <Setting Name="NameBook" Type="System.String" Scope="User">
+      <Value Profile="(Default)">book</Value>
+    </Setting>
+    <Setting Name="NameSeries" Type="System.String" Scope="User">
+      <Value Profile="(Default)">series</Value>
+    </Setting>
+    <Setting Name="nameBooktags" Type="System.String" Scope="User">
+      <Value Profile="(Default)">booktags</Value>
+    </Setting>
+    <Setting Name="ameBookanno" Type="System.String" Scope="User">
+      <Value Profile="(Default)">bookanno</Value>
+    </Setting>
+    <Setting Name="strFolderLib" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

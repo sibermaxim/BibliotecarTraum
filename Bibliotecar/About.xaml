@@ -1,0 +1,17 @@
+﻿<Window x:Class="Bibliotecar.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="О программе" 
+        Height="142" 
+        Width="300"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow" 
+        ResizeMode="NoResize">
+        
+        <StackPanel Height="112">
+            <Label Content="Библиотекарь" Name="title" />
+            <Label Content="Назначение: Работа с коллекциями книг" Name="aboutProg" />
+            <Label Content="Разработчик: Константинов Максим" Name="developer" />
+            <Label Content="Контактные данные: konstantim_m@mail.ru" Name="email" />
+    </StackPanel>
+</Window>

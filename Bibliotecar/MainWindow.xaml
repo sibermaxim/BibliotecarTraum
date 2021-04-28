@@ -1,0 +1,284 @@
+﻿<Window x:Class="Bibliotecar.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:TagsTitle="clr-namespace:Bibliotecar.TagsTitle" 
+        Title="Библиотекарь" 
+        Height="600" 
+        Width="1024"
+        WindowStartupLocation="CenterScreen">
+
+        <Window.Resources>
+            <DataTemplate x:Key="ListAutor">
+                <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" Width="{Binding ActualWidth, 
+                           RelativeSource={RelativeSource AncestorType={x:Type ScrollContentPresenter}}}" 
+                           TextWrapping="Wrap"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <TagsTitle:TreeNodeList x:Key="MyList"/>
+            
+            <HierarchicalDataTemplate DataType = "{x:Type TagsTitle:TreeNode}"
+                ItemsSource = "{Binding Path=ChildNodes}">
+            <TextBlock Text="{Binding Path=Name}"  />
+            </HierarchicalDataTemplate>
+        </Window.Resources>
+
+        <DockPanel LastChildFill="True">
+            <ToolBarPanel DockPanel.Dock="Top">
+                <ToolBar>
+                    <Menu>
+                        <MenuItem Header="Файл" Name="_filemenu" >
+                            <Separator />
+                            <MenuItem Header="Выход" />
+                        </MenuItem>
+                        <MenuItem Header="Настройки" Name="_editmenu">
+                            <MenuItem Header="Файл библиотеки" Name="_folderNmameLib" 
+                                      Click="FolderNmameLibClick" />
+                            <MenuItem Header="Каталог библиотеки" Name="FolderLib" 
+                                      Click="FolderLibClick" />
+                        </MenuItem>
+                        <MenuItem Header="Помощь" Name="_helpmenu" >
+                            <MenuItem Header="О программе" Click="MenuItem_Click" />
+                        </MenuItem>                    
+                    </Menu>
+                </ToolBar>
+                <ToolBar>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click" IsChecked="True">А</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Б</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">В</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Г</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Д</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Е</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ё</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ж</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">З</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">И</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">К</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Л</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">М</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Н</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">О</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">П</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Р</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">С</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Т</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">У</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ф</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Х</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ц</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ч</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ш</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Щ</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Э</RadioButton>
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Ю</RadioButton>    
+                    <RadioButton Style="{StaticResource Togglebutton}" Click="RadioButton_Click">Я</RadioButton>   
+                </ToolBar>
+            </ToolBarPanel>
+            <TabControl DockPanel.Dock="Bottom" Name="typeFindcontrol">
+                <TabItem Header="Автор" Name="tabauhtor">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Margin="2, 2, 2, 2" TextChanged="TextBox_TextChanged" 
+                                 Name = "strFindCondition"/>
+                        <!-- Список авторов -->
+                        <ListBox Name="listBox" SelectionChanged="ListBoxSelectionChanged" Grid.Row="1"
+                                 Margin="2, 2, 2, 2" AlternationCount="2" 
+                                 ItemTemplate="{StaticResource ListAutor}" KeyDown="listBox_KeyDown"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                            
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="Background" Value="LightSteelBlue" />
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Style.Triggers>
+                                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                            <Setter Property="Background" Value="LightBlue" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="DarkRed" />
+                                            <Setter Property="Foreground" Value="White" />
+                                            <Setter Property="BorderBrush" Value="Black" />
+                                            <Setter Property="BorderThickness" Value="1" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                        </ListBox>
+</Grid>
+                        <Grid Grid.Column=" 1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                        
+                            <DataGrid Name="autorListBook" AutoGenerateColumns="False" 
+                                      IsReadOnly="true" Margin="5, 5, 5, 5"
+                                      MouseDoubleClick="AutorListBookMouseDoubleClick" 
+                                      SelectionChanged="AutorListBookSelectionChanged">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Имя книги" MaxWidth="200"  
+                                                        Binding="{Binding Path=NameBook}">
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Header="Добавлено" Binding="{Binding Path=Year}"/>
+                                    <DataGridTextColumn Header="Серия" Binding="{Binding Path=Series}"/>
+                                    <DataGridTextColumn Header="№ в серии" Binding="{Binding Path=Number}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                            <Border BorderBrush="Silver" BorderThickness="1" Grid.Row="1"   Margin="10,10,10,10" 
+                                    Name="border1" CornerRadius="10">
+                                <StackPanel  Name="stackPanel1" >
+                                    <Label Content="Папка" Height="28" Name="titleFolderAuthor" />
+                                    <Label Content="Файл" Height="28" Name="titleFileAuthor" />
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <GridSplitter Grid.Row="0" Grid.Column="1" Width=" 3" 
+                                        VerticalAlignment="Stretch" HorizontalAlignment="Left" 
+                                        ShowsPreview="False"/>
+
+                        <ScrollViewer Grid.Column="2" >
+                            <TextBlock Name="txtAnons"  TextWrapping="Wrap" TextAlignment="Justify" 
+                                       Padding="5,10,5,10" Margin="5, 5, 5, 5"/>
+                        </ScrollViewer>
+                    </Grid>         <!--Внешняя сетка-->
+                </TabItem>
+
+                <TabItem Header="Жанр" Name="tabItem2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TreeView Name="titleTagsBook" ItemsSource="{Binding Source={StaticResource MyList}}" 
+                                  SelectedItemChanged="TitleTagsBookSelectedItemChanged" />
+
+                        <DataGrid Name="GridBookTag" Grid.Column="1" AutoGenerateColumns="False" 
+                                  SelectionChanged="GridBookTag_SelectionChanged"
+                                  IsReadOnly="True">
+                        <DataGrid.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Path=Name}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander>
+                                                        <Expander.Header>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Path=Name}" />
+                                                            </StackPanel>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter/>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </DataGrid.GroupStyle>
+                        
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Имя книги" MaxWidth="200"  
+                                                        Binding="{Binding Path=NameBook}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+
+                                </DataGridTextColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <ScrollViewer Grid.Column="2" >
+                            <TextBlock Name="txtAnonsTag"  TextWrapping="Wrap" TextAlignment="Justify" 
+                                       Padding="5,10,5,10" Margin="5, 5, 5, 5"/>
+                        </ScrollViewer>
+
+                    </Grid>                <!--Внешняя сетка-->
+
+                </TabItem>
+
+                <TabItem Header="Поиск" Name="findBook">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <Label HorizontalAlignment="Center">Критерий поиска</Label>
+                        
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Name="FindCriterion" Margin="5, 5, 5, 5" Width="200"></TextBox>
+                                <Button Margin="5, 5, 5, 5" Width="25" Click="StartFind">...</Button>
+                            </StackPanel>
+
+                            <Label HorizontalAlignment="Center">Искать совпадения в</Label>
+                        </StackPanel>
+
+                        <DataGrid Name="GridFind" AutoGenerateColumns="False" Grid.Column="1" 
+                                      IsReadOnly="true" Margin="5, 5, 5, 5"
+                                      MouseDoubleClick="AutorListBookMouseDoubleClick" 
+                                      SelectionChanged="AutorListBookSelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Автор" MaxWidth="200"  
+                                                        Binding="{Binding Path=author}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+
+                                </DataGridTextColumn>
+
+                                <DataGridTextColumn Header="Имя книги" MaxWidth="200"  
+                                                        Binding="{Binding Path=bookName}">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    
+                    </Grid>
+                </TabItem>
+
+        </TabControl>
+    </DockPanel>
+</Window>
